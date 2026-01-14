@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Build output
+site/build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Cache
+.cache/
+
+# Obsidian
+.obsidian/workspace.json
+.obsidian/plugins/*/data.json
+.trash/
+
+# Python (if any scripts)
+__pycache__/
+*.pyc
+venv/

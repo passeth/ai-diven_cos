@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | AI Cosmetics Journal</title>
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --text: #1f2937;
+      --text-secondary: #6b7280;
+      --bg: #f9fafb;
+      --card-bg: #ffffff;
+      --border: #e5e7eb;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    
+    .admin-header {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .admin-header h1 {
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .admin-header nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin-left: 1.5rem;
+    }
+    
+    .admin-header nav a:hover {
+      color: var(--primary);
+    }
+    
+    .admin-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .stat-card {
+      background: var(--card-bg);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+    }
+    
+    .stat-card h3 {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-card .value {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    
+    .section-header h2 {
+      font-size: 1.25rem;
+    }
+    
+    .filter-controls {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .filter-controls select,
+    .filter-controls input {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+    }
+    
+    .articles-table {
+      background: var(--card-bg);
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    
+    .articles-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .articles-table th,
+    .articles-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .articles-table th {
+      background: var(--bg);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+    }
+    
+    .articles-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .articles-table tr:hover {
+      background: var(--bg);
+    }
+    
+    .article-title {
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      display: block;
+    }
+    
+    .article-title:hover {
+      color: var(--primary);
+    }
+    
+    .article-meta {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+    
+    .category-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: white;
+    }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    
+    .status-badge.published {
+      background: #d1fae5;
+      color: #065f46;
+    }
+    
+    .status-badge.draft {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+    }
+    
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .toggle-switch .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #d1d5db;
+      border-radius: 24px;
+      transition: 0.3s;
+    }
+    
+    .toggle-switch .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+    
+    .toggle-switch input:checked + .slider {
+      background: var(--primary);
+    }
+    
+    .toggle-switch input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+    
+    .priority-input {
+      width: 60px;
+      padding: 0.25rem 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 0.25rem;
+      text-align: center;
+    }
+    
+    .actions-cell {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+    
+    .btn-secondary {
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    
+    .btn-secondary:hover {
+      background: #e5e7eb;
+    }
+    
+    .btn-danger {
+      background: var(--danger);
+      color: white;
+    }
+    
+    .btn-sm {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+    }
+    
+    .save-indicator {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 1rem 1.5rem;
+      background: var(--success);
+      color: white;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s;
+    }
+    
+    .save-indicator.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--text-secondary);
+    }
+    
+    .empty-state h3 {
+      margin-bottom: 0.5rem;
+    }
+    
+    @media (max-width: 1024px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .filter-controls {
+        flex-direction: column;
+      }
+      
+      .articles-table {
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="admin-header">
+    <h1>🧪 Admin Dashboard</h1>
+    <nav>
+      <a href="/">View Site</a>
+      <a href="#" id="buildBtn">Rebuild Site</a>
+      <a href="#" id="refreshBtn">Refresh Data</a>
+    </nav>
+  </header>
+  
+  <main class="admin-container">
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Total Articles</h3>
+        <div class="value" id="totalArticles">--</div>
+      </div>
+      <div class="stat-card">
+        <h3>Published</h3>
+        <div class="value" id="publishedCount">--</div>
+      </div>
+      <div class="stat-card">
+        <h3>Draft</h3>
+        <div class="value" id="draftCount">--</div>
+      </div>
+      <div class="stat-card">
+        <h3>Featured</h3>
+        <div class="value" id="featuredCount">--</div>
+      </div>
+    </div>
+    
+    <!-- Articles Section -->
+    <div class="section-header">
+      <h2>Article Management</h2>
+      <div class="filter-controls">
+        <select id="categoryFilter">
+          <option value="">All Categories</option>
+          <option value="development">Development</option>
+          <option value="products">Products</option>
+          <option value="ingredients">Ingredients</option>
+          <option value="trends">Trends</option>
+          <option value="tips">Tips</option>
+        </select>
+        <select id="statusFilter">
+          <option value="">All Status</option>
+          <option value="published">Published</option>
+          <option value="draft">Draft</option>
+        </select>
+        <input type="text" id="searchInput" placeholder="Search articles...">
+      </div>
+    </div>
+    
+    <div class="articles-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Article</th>
+            <th>Category</th>
+            <th>Author</th>
+            <th>Status</th>
+            <th>Featured</th>
+            <th>Priority</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="articlesBody">
+          <!-- Populated by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+  
+  <div class="save-indicator" id="saveIndicator">Changes saved!</div>
+  
+  <script>
+    // Category colors
+    const categoryColors = {
+      development: '#6366f1',
+      products: '#ec4899',
+      ingredients: '#10b981',
+      trends: '#f59e0b',
+      tips: '#8b5cf6'
+    };
+    
+    // Sample article data (in real implementation, this would come from scanning content folder)
+    let articles = [
+      { slug: 'ai-revolutionizing-retinol-formulation', title: 'How AI is Revolutionizing Retinol Formulation', category: 'development', journalist: 'Dr. Sarah Kim', status: 'published', featured: true, priority: 1, date: '2025-01-15' },
+      { slug: 'machine-learning-ingredient-discovery', title: 'Machine Learning is Discovering New Skincare Ingredients', category: 'development', journalist: 'Dr. Emily Chen', status: 'published', featured: true, priority: 2, date: '2025-01-12' },
+      { slug: 'best-vitamin-c-serums-2025', title: 'The 5 Best Vitamin C Serums of 2025', category: 'products', journalist: 'Yuna Lee', status: 'published', featured: true, priority: 3, date: '2025-01-14' },
+      { slug: 'hydrating-toner-review-affordable', title: 'This $18 Hydrating Toner Outperformed My $60 Favorite', category: 'products', journalist: 'Yuna Lee', status: 'published', featured: false, priority: 5, date: '2025-01-10' },
+      { slug: 'niacinamide-complete-guide', title: 'Niacinamide: The Complete Science-Backed Guide', category: 'ingredients', journalist: 'Dr. Sarah Kim', status: 'published', featured: false, priority: 4, date: '2025-01-13' },
+      { slug: 'peptides-skincare-explained', title: 'Peptides in Skincare: What Works', category: 'ingredients', journalist: 'Dr. Sarah Kim', status: 'published', featured: false, priority: 6, date: '2025-01-08' },
+      { slug: 'personalized-skincare-market-trends', title: 'Personalized Skincare: The $10B Market', category: 'trends', journalist: 'Alex Thompson', status: 'published', featured: false, priority: 4, date: '2025-01-11' },
+      { slug: 'sustainable-beauty-2025-trends', title: 'Sustainable Beauty 2025: Beyond Greenwashing', category: 'trends', journalist: 'Dr. David Rodriguez', status: 'published', featured: false, priority: 5, date: '2025-01-09' },
+      { slug: 'winter-skincare-routine-guide', title: 'How to Adapt Your Skincare Routine for Winter', category: 'tips', journalist: 'Min-ji Kang', status: 'published', featured: false, priority: 5, date: '2025-01-14' },
+      { slug: 'skincare-layering-order-guide', title: 'The Correct Order to Layer Your Skincare Products', category: 'tips', journalist: 'Yuna Lee', status: 'published', featured: false, priority: 6, date: '2025-01-07' }
+    ];
+    
+    // Update stats
+    function updateStats() {
+      document.getElementById('totalArticles').textContent = articles.length;
+      document.getElementById('publishedCount').textContent = articles.filter(a => a.status === 'published').length;
+      document.getElementById('draftCount').textContent = articles.filter(a => a.status === 'draft').length;
+      document.getElementById('featuredCount').textContent = articles.filter(a => a.featured).length;
+    }
+    
+    // Render articles table
+    function renderArticles() {
+      const categoryFilter = document.getElementById('categoryFilter').value;
+      const statusFilter = document.getElementById('statusFilter').value;
+      const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+      
+      let filtered = articles;
+      
+      if (categoryFilter) {
+        filtered = filtered.filter(a => a.category === categoryFilter);
+      }
+      
+      if (statusFilter) {
+        filtered = filtered.filter(a => a.status === statusFilter);
+      }
+      
+      if (searchQuery) {
+        filtered = filtered.filter(a => 
+          a.title.toLowerCase().includes(searchQuery) ||
+          a.journalist.toLowerCase().includes(searchQuery)
+        );
+      }
+      
+      const tbody = document.getElementById('articlesBody');
+      
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8">
+              <div class="empty-state">
+                <h3>No articles found</h3>
+                <p>Try adjusting your filters</p>
+              </div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+      
+      tbody.innerHTML = filtered.map((article, index) => `
+        <tr data-slug="${article.slug}">
+          <td>
+            <a href="/articles/${article.slug}.html" class="article-title" target="_blank">
+              ${article.title}
+            </a>
+            <div class="article-meta">${article.slug}</div>
+          </td>
+          <td>
+            <span class="category-badge" style="background: ${categoryColors[article.category]}">
+              ${article.category}
+            </span>
+          </td>
+          <td>${article.journalist}</td>
+          <td>
+            <span class="status-badge ${article.status}">${article.status}</span>
+          </td>
+          <td>
+            <label class="toggle-switch">
+              <input type="checkbox" ${article.featured ? 'checked' : ''} 
+                     onchange="toggleFeatured('${article.slug}', this.checked)">
+              <span class="slider"></span>
+            </label>
+          </td>
+          <td>
+            <input type="number" class="priority-input" value="${article.priority}" min="1" max="10"
+                   onchange="updatePriority('${article.slug}', this.value)">
+          </td>
+          <td>${article.date}</td>
+          <td class="actions-cell">
+            <button class="btn btn-secondary btn-sm" onclick="toggleStatus('${article.slug}')">
+              ${article.status === 'published' ? 'Unpublish' : 'Publish'}
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="previewArticle('${article.slug}')">
+              Preview
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+    
+    // Toggle featured status
+    function toggleFeatured(slug, checked) {
+      const article = articles.find(a => a.slug === slug);
+      if (article) {
+        article.featured = checked;
+        showSaveIndicator();
+        updateStats();
+      }
+    }
+    
+    // Update priority
+    function updatePriority(slug, value) {
+      const article = articles.find(a => a.slug === slug);
+      if (article) {
+        article.priority = parseInt(value);
+        showSaveIndicator();
+      }
+    }
+    
+    // Toggle publish status
+    function toggleStatus(slug) {
+      const article = articles.find(a => a.slug === slug);
+      if (article) {
+        article.status = article.status === 'published' ? 'draft' : 'published';
+        showSaveIndicator();
+        updateStats();
+        renderArticles();
+      }
+    }
+    
+    // Preview article
+    function previewArticle(slug) {
+      window.open(`/articles/${slug}.html`, '_blank');
+    }
+    
+    // Show save indicator
+    function showSaveIndicator() {
+      const indicator = document.getElementById('saveIndicator');
+      indicator.classList.add('show');
+      setTimeout(() => {
+        indicator.classList.remove('show');
+      }, 2000);
+    }
+    
+    // Event listeners
+    document.getElementById('categoryFilter').addEventListener('change', renderArticles);
+    document.getElementById('statusFilter').addEventListener('change', renderArticles);
+    document.getElementById('searchInput').addEventListener('input', renderArticles);
+    
+    document.getElementById('buildBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('Build triggered! In production, this would run: npm run build');
+    });
+    
+    document.getElementById('refreshBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      renderArticles();
+      updateStats();
+      showSaveIndicator();
+    });
+    
+    // Initial render
+    updateStats();
+    renderArticles();
+  </script>
+</body>
+</html>

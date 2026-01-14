@@ -1,0 +1,29 @@
+{
+  "name": "ai-cosmetics-journal",
+  "version": "1.0.0",
+  "description": "AI-powered cosmetics innovation journal - static site generator",
+  "main": "site/src/build.js",
+  "scripts": {
+    "build": "node site/src/build.js",
+    "dev": "node site/src/dev-server.js",
+    "clean": "node -e \"require('fs').rmSync('site/build', {recursive:true, force:true})\"",
+    "deploy": "npm run build && gh-pages -d site/build"
+  },
+  "keywords": [
+    "cosmetics",
+    "beauty",
+    "journal",
+    "static-site",
+    "ai"
+  ],
+  "author": "passeth",
+  "license": "MIT",
+  "dependencies": {
+    "marked": "^12.0.0",
+    "gray-matter": "^4.0.3",
+    "sharp": "^0.33.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.0"
+  }
+}

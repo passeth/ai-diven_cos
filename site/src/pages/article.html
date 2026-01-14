@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} | {{ siteName }}</title>
+  <meta name="description" content="{{ excerpt }}">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ excerpt }}">
+  <meta property="og:image" content="{{ featured_image }}">
+  <meta property="og:url" content="{{ url }}">
+  <meta property="og:type" content="article">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title }}">
+  <meta name="twitter:description" content="{{ excerpt }}">
+  <meta name="twitter:image" content="{{ featured_image }}">
+  
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="canonical" href="{{ url }}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">
+        <span class="site-logo__icon">🧪</span>
+        <span class="site-logo__text">{{ siteName }}</span>
+      </a>
+      <nav class="site-nav">
+        <a href="/category/development.html">Development</a>
+        <a href="/category/products.html">Products</a>
+        <a href="/category/ingredients.html">Ingredients</a>
+        <a href="/category/trends.html">Trends</a>
+        <a href="/category/tips.html">Tips</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Article -->
+  <article class="article">
+    <!-- Hero -->
+    <header class="article-hero">
+      <div class="container">
+        <a href="/category/{{ categorySlug }}.html" class="article-category" style="background-color: {{ categoryColor }}">
+          {{ category }}
+        </a>
+        <h1 class="article-title">{{ title }}</h1>
+        <div class="article-meta">
+          <a href="/journalist/{{ authorSlug }}.html" class="article-author">
+            <img src="{{ authorAvatar }}" alt="{{ authorName }}" class="article-author__avatar">
+            <div class="article-author__info">
+              <span class="article-author__name">{{ authorName }}</span>
+              <span class="article-author__role">{{ authorRole }}</span>
+            </div>
+          </a>
+          <div class="article-meta__details">
+            <time datetime="{{ date }}">{{ date }}</time>
+            <span class="article-meta__separator">·</span>
+            <span>{{ reading_time }} read</span>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Featured Image -->
+    <div class="article-image">
+      <img src="{{ featured_image }}" alt="{{ title }}">
+    </div>
+
+    <!-- Content -->
+    <div class="article-content">
+      <div class="container container--narrow">
+        {{ content }}
+      </div>
+    </div>
+
+    <!-- Tags -->
+    <div class="article-tags">
+      <div class="container container--narrow">
+        {{ tags }}
+      </div>
+    </div>
+
+    <!-- Share -->
+    <div class="article-share">
+      <div class="container container--narrow">
+        <span>Share this article:</span>
+        <div class="share-buttons">
+          <a href="https://twitter.com/intent/tweet?url={{ url }}&text={{ title }}" 
+             class="share-btn share-btn--twitter" 
+             target="_blank" 
+             rel="noopener">
+            Twitter
+          </a>
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url }}&title={{ title }}" 
+             class="share-btn share-btn--linkedin" 
+             target="_blank" 
+             rel="noopener">
+            LinkedIn
+          </a>
+          <button class="share-btn share-btn--copy" data-url="{{ url }}">
+            Copy Link
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Author Bio -->
+    <aside class="author-bio">
+      <div class="container container--narrow">
+        <a href="/journalist/{{ authorSlug }}.html" class="author-bio__card">
+          <img src="{{ authorAvatar }}" alt="{{ authorName }}" class="author-bio__avatar">
+          <div class="author-bio__content">
+            <h3 class="author-bio__name">{{ authorName }}</h3>
+            <p class="author-bio__role">{{ authorRole }}</p>
+            <p class="author-bio__text">{{ authorBio }}</p>
+            <span class="author-bio__link">View all articles →</span>
+          </div>
+        </a>
+      </div>
+    </aside>
+  </article>
+
+  <!-- Related Articles -->
+  <section class="related-section">
+    <div class="container">
+      <h2 class="section-title">Related Articles</h2>
+      <div class="related-grid">
+        {{ related }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="site-logo">
+            <span class="site-logo__icon">🧪</span>
+            <span class="site-logo__text">{{ siteName }}</span>
+          </span>
+          <p>AI-powered insights into the future of cosmetics and skincare innovation.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Categories</h4>
+          <a href="/category/development.html">Development</a>
+          <a href="/category/products.html">Products</a>
+          <a href="/category/ingredients.html">Ingredients</a>
+          <a href="/category/trends.html">Trends</a>
+          <a href="/category/tips.html">Tips</a>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <a href="/feed.xml">RSS Feed</a>
+          <a href="/sitemap.xml">Sitemap</a>
+          <a href="/admin/">Admin</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {{ year }} {{ siteName }}. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/scripts/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ siteName }} - AI-Powered Cosmetics Innovation</title>
+  <meta name="description" content="Explore cutting-edge cosmetics innovation powered by AI. Expert insights on ingredients, formulation, trends, and beauty tips.">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="alternate" type="application/rss+xml" title="{{ siteName }}" href="/feed.xml">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">
+        <span class="site-logo__icon">🧪</span>
+        <span class="site-logo__text">{{ siteName }}</span>
+      </a>
+      <nav class="site-nav">
+        <a href="/category/development.html">Development</a>
+        <a href="/category/products.html">Products</a>
+        <a href="/category/ingredients.html">Ingredients</a>
+        <a href="/category/trends.html">Trends</a>
+        <a href="/category/tips.html">Tips</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero__title">AI-Powered Cosmetics Innovation</h1>
+      <p class="hero__subtitle">Expert insights from R&D scientists, clinical researchers, and beauty experts on the future of skincare</p>
+    </div>
+  </section>
+
+  <!-- Featured Articles -->
+  <section class="featured-section">
+    <div class="container">
+      <h2 class="section-title">Featured Stories</h2>
+      <div class="featured-grid">
+        {{ featured }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Navigation -->
+  <section class="categories-section">
+    <div class="container">
+      <h2 class="section-title">Explore Topics</h2>
+      <div class="category-grid">
+        {{ categories }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Articles -->
+  <section class="articles-section">
+    <div class="container">
+      <h2 class="section-title">Latest Articles</h2>
+      <div class="articles-grid">
+        {{ articles }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-box">
+        <h2>Stay Updated</h2>
+        <p>Get the latest cosmetics innovation insights delivered to your inbox</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="site-logo">
+            <span class="site-logo__icon">🧪</span>
+            <span class="site-logo__text">{{ siteName }}</span>
+          </span>
+          <p>AI-powered insights into the future of cosmetics and skincare innovation.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Categories</h4>
+          <a href="/category/development.html">Development</a>
+          <a href="/category/products.html">Products</a>
+          <a href="/category/ingredients.html">Ingredients</a>
+          <a href="/category/trends.html">Trends</a>
+          <a href="/category/tips.html">Tips</a>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <a href="/feed.xml">RSS Feed</a>
+          <a href="/sitemap.xml">Sitemap</a>
+          <a href="/admin/">Admin</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {{ year }} {{ siteName }}. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/scripts/main.js"></script>
+</body>
+</html>
