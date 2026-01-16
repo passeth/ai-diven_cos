@@ -25,7 +25,6 @@ npm-debug.log*
 
 # Obsidian
 .obsidian/workspace.json
-.obsidian/plugins/*/data.json
 .trash/
 
 # Python (if any scripts)
