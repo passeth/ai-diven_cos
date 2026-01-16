@@ -152,6 +152,7 @@ function getArticles() {
           ...frontmatter,
           content: marked(processedMarkdown),
           markdown: processedMarkdown,
+          rawContent: markdown,  // Original markdown for image detection
           filePath,
           category,
           persona: PERSONAS[frontmatter.journalist] || PERSONAS['yuna-lee']
@@ -196,14 +197,30 @@ function renderTemplate(templateName, data) {
 }
 
 /**
- * Get image path with fallback to category placeholder
+ * Get image path with fallback to first image in content, then placeholder
  */
 function getImagePath(article) {
-  // Use featured_image from YAML if exists
+  // 1. Use featured_image from YAML if exists
   if (article.featured_image) {
+    // If it's just a filename, add the path
+    if (!article.featured_image.startsWith('/')) {
+      return `/assets/images/${article.featured_image}`;
+    }
     return article.featured_image;
   }
-  // Fallback to category-specific placeholder SVG
+  
+  // 2. Find first image in article content (Obsidian format or standard markdown)
+  const obsidianImageMatch = article.rawContent?.match(/!\[\[@?[^\]]*\/([^\]\/]+\.(jpg|jpeg|png|gif|webp))\]\]/i);
+  if (obsidianImageMatch) {
+    return `/assets/images/${obsidianImageMatch[1]}`;
+  }
+  
+  const markdownImageMatch = article.rawContent?.match(/!\[.*?\]\(.*?\/([^\/\)]+\.(jpg|jpeg|png|gif|webp))\)/i);
+  if (markdownImageMatch) {
+    return `/assets/images/${markdownImageMatch[1]}`;
+  }
+  
+  // 3. Fallback to category-specific placeholder SVG
   return `/assets/images/${article.category}-placeholder.svg`;
 }
 
