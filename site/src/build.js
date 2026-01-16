@@ -281,6 +281,24 @@ function buildArticlePages(articles) {
   const articlesDir = path.join(CONFIG.outputDir, 'articles');
   fs.mkdirSync(articlesDir, { recursive: true });
   
+  // Generate recent posts for sidebar (excluding current article)
+  const generateRecentPosts = (currentSlug) => {
+    return articles
+      .filter(a => a.slug !== currentSlug)
+      .slice(0, 5)
+      .map(a => `
+        <a href="/articles/${a.slug}.html" class="sidebar-post">
+          <div class="sidebar-post__image">
+            <img src="${getImagePath(a)}" alt="${a.title}" loading="lazy">
+          </div>
+          <div class="sidebar-post__content">
+            <h4 class="sidebar-post__title">${a.title}</h4>
+            <span class="sidebar-post__author">${a.persona.name}</span>
+          </div>
+        </a>
+      `).join('');
+  };
+  
   for (const article of articles) {
     const categoryData = getCategoryMeta(article.category);
     
@@ -295,6 +313,9 @@ function buildArticlePages(articles) {
     const tagsHtml = (article.tags || []).map(tag => 
       `<a href="/tag/${tag}.html" class="article-tag">${tag}</a>`
     ).join('');
+    
+    // Recent posts for sidebar
+    const recentPostsHtml = generateRecentPosts(article.slug);
     
     const html = renderTemplate('article', {
       siteName: CONFIG.siteName,
@@ -314,6 +335,7 @@ function buildArticlePages(articles) {
       authorSlug: article.journalist,
       tags: tagsHtml,
       related: related,
+      recentPosts: recentPostsHtml,
       excerpt: article.excerpt,
       slug: article.slug,
       url: `${CONFIG.siteUrl}/articles/${article.slug}.html`,

@@ -1204,3 +1204,126 @@ p {
   white-space: nowrap;
   border: 0;
 }
+
+/* ================================
+   Article Layout with Sidebar
+   ================================ */
+
+.article-layout {
+  padding: var(--space-12) 0;
+}
+
+.article-layout__wrapper {
+  display: flex;
+  gap: var(--space-12);
+}
+
+.article-layout .article-content {
+  flex: 1;
+  max-width: 720px;
+}
+
+.article-sidebar {
+  width: 320px;
+  flex-shrink: 0;
+  padding-left: var(--space-8);
+  border-left: 1px dashed var(--color-border);
+}
+
+.sidebar-section {
+  position: sticky;
+  top: var(--space-8);
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.sidebar-arrow {
+  font-size: var(--text-sm);
+}
+
+.sidebar-posts {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sidebar Post Card */
+.sidebar-post {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-bottom: 1px dashed var(--color-border);
+  color: var(--color-text);
+  transition: opacity var(--transition-fast);
+}
+
+.sidebar-post:hover {
+  opacity: 0.7;
+}
+
+.sidebar-post:last-child {
+  border-bottom: none;
+}
+
+.sidebar-post__image {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.sidebar-post__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sidebar-post__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sidebar-post__title {
+  font-family: var(--font-serif);
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.4;
+  margin-bottom: var(--space-2);
+  color: var(--color-text);
+}
+
+.sidebar-post__author {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+}
+
+/* Responsive: Hide sidebar on tablet and below */
+@media (max-width: 1024px) {
+  .article-layout__wrapper {
+    flex-direction: column;
+  }
+  
+  .article-sidebar {
+    display: none;
+  }
+  
+  .article-layout .article-content {
+    max-width: 100%;
+  }
+}

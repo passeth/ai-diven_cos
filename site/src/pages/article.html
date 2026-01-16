@@ -71,17 +71,33 @@
       </div>
     </header>
 
-    <!-- Content -->
-    <div class="article-content">
-      <div class="container container--narrow">
-        {{ content }}
-      </div>
-    </div>
-
-    <!-- Tags -->
-    <div class="article-tags">
-      <div class="container container--narrow">
-        {{ tags }}
+    <!-- Content with Sidebar -->
+    <div class="article-layout">
+      <div class="container">
+        <div class="article-layout__wrapper">
+          <!-- Main Content -->
+          <div class="article-content">
+            {{ content }}
+            
+            <!-- Tags -->
+            <div class="article-tags">
+              {{ tags }}
+            </div>
+          </div>
+          
+          <!-- Sidebar -->
+          <aside class="article-sidebar">
+            <div class="sidebar-section">
+              <div class="sidebar-header">
+                <span>RECENT ESSAYS</span>
+                <span class="sidebar-arrow">→</span>
+              </div>
+              <div class="sidebar-posts">
+                {{ recentPosts }}
+              </div>
+            </div>
+          </aside>
+        </div>
       </div>
     </div>
 
