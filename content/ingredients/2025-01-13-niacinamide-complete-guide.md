@@ -14,7 +14,7 @@ updated: 2025-01-13
 featured_image: /assets/images/2025-01-13-niacinamide-complete-guide_20260116_1.png
 excerpt: "Everything you need to know about niacinamide: how it works, optimal concentrations, what to pair it with, and the latest research findings."
 status: published
-featured: false
+featured: true
 homepage_priority: 4
 reading_time: 10 min
 ---
