@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journalists Manager | AI Cosmetics Journal Admin</title>
+  <style>
+    :root {
+      --bg: #000000;
+      --bg-secondary: #0a0a0a;
+      --text: #ffffff;
+      --text-secondary: #888888;
+      --border: #333333;
+      --accent: #818cf8;
+      --success: #34d399;
+      --danger: #f87171;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    
+    .admin-header {
+      background: var(--bg);
+      border-bottom: 1px dashed var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .admin-header h1 {
+      font-family: 'Georgia', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+    
+    .admin-header nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .admin-header nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+    
+    .admin-header nav a:hover,
+    .admin-header nav a.active {
+      color: var(--text);
+    }
+    
+    .admin-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .page-title {
+      font-family: 'Georgia', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+    
+    .page-description {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px dashed var(--border);
+    }
+    
+    .journalists-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .journalist-card {
+      background: transparent;
+      border: 1px dashed var(--border);
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+    }
+    
+    .journalist-card:hover {
+      border-color: var(--text-secondary);
+    }
+    
+    .journalist-card__header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .journalist-card__avatar-wrapper {
+      position: relative;
+      flex-shrink: 0;
+    }
+    
+    .journalist-card__avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      background: var(--bg-secondary);
+    }
+    
+    .journalist-card__avatar-upload {
+      position: absolute;
+      bottom: -4px;
+      right: -4px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+    
+    .journalist-card__avatar-upload:hover {
+      transform: scale(1.1);
+    }
+    
+    .journalist-card__avatar-upload svg {
+      width: 14px;
+      height: 14px;
+      fill: white;
+    }
+    
+    .journalist-card__avatar-upload input {
+      display: none;
+    }
+    
+    .journalist-card__info {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .journalist-card__name {
+      font-family: 'Georgia', serif;
+      font-size: 1.125rem;
+      font-weight: 400;
+      margin-bottom: 0.25rem;
+    }
+    
+    .journalist-card__role {
+      color: var(--accent);
+      font-size: 0.875rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .journalist-card__slug {
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-family: monospace;
+    }
+    
+    .journalist-card__bio {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed var(--border);
+    }
+    
+    .journalist-card__form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    
+    .form-group label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      background: transparent;
+      border: 1px dashed var(--border);
+      padding: 0.5rem 0.75rem;
+      color: var(--text);
+      font-size: 0.875rem;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--text);
+    }
+    
+    .form-group textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+    
+    .journalist-card__actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--border);
+    }
+    
+    .btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      border: 1px dashed var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .btn:hover {
+      border-color: var(--text);
+      color: var(--text);
+    }
+    
+    .btn--primary {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+    
+    .btn--primary:hover {
+      background: transparent;
+      color: var(--text);
+    }
+    
+    .btn--success {
+      border-color: var(--success);
+      color: var(--success);
+    }
+    
+    .btn--success:hover {
+      background: var(--success);
+      color: var(--bg);
+    }
+    
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 1rem 1.5rem;
+      background: var(--bg-secondary);
+      border: 1px dashed var(--border);
+      color: var(--text);
+      font-size: 0.875rem;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 1000;
+    }
+    
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .toast.success {
+      border-color: var(--success);
+    }
+    
+    .toast.error {
+      border-color: var(--danger);
+    }
+    
+    .file-info {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--bg-secondary);
+      border: 1px dashed var(--border);
+    }
+    
+    .file-info h4 {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    
+    .file-info p {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      font-family: monospace;
+      word-break: break-all;
+    }
+    
+    .add-journalist {
+      border: 2px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .add-journalist:hover {
+      border-color: var(--text-secondary);
+      background: var(--bg-secondary);
+    }
+    
+    .add-journalist span {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+    
+    .instructions {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: var(--bg-secondary);
+      border: 1px dashed var(--border);
+    }
+    
+    .instructions h3 {
+      font-family: 'Georgia', serif;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+    
+    .instructions ol {
+      padding-left: 1.5rem;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+    
+    .instructions li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .instructions code {
+      background: var(--bg);
+      padding: 0.125rem 0.375rem;
+      font-size: 0.8em;
+    }
+    
+    @media (max-width: 768px) {
+      .admin-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+      
+      .journalists-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="admin-header">
+    <h1>Admin Dashboard</h1>
+    <nav>
+      <a href="/admin/">Articles</a>
+      <a href="/admin/journalists.html" class="active">Journalists</a>
+      <a href="/">View Site</a>
+    </nav>
+  </header>
+  
+  <main class="admin-container">
+    <h2 class="page-title">Journalists Manager</h2>
+    <p class="page-description">
+      Manage journalist profiles, avatars, and information. Changes are saved to local files.
+    </p>
+    
+    <div class="journalists-grid" id="journalistsList">
+      <!-- Journalists will be loaded here -->
+    </div>
+    
+    <div class="instructions">
+      <h3>How to Update Journalist Profiles</h3>
+      <ol>
+        <li><strong>Change Avatar Image:</strong> Click the camera icon on the profile picture to upload a new image (PNG, JPG, or WebP recommended, 400x400px)</li>
+        <li><strong>Edit Info:</strong> Modify name, role, or bio directly in the form fields</li>
+        <li><strong>Save Changes:</strong> Click "Save" to update. This will modify <code>build.js</code></li>
+        <li><strong>Rebuild Site:</strong> After saving, run <code>npm run build</code> to regenerate pages</li>
+      </ol>
+      <div class="file-info">
+        <h4>File Locations</h4>
+        <p><strong>Avatar Images:</strong> content/_assets/personas/[slug].svg (or .png, .jpg, .webp)</p>
+        <p><strong>Journalist Data:</strong> site/src/build.js (PERSONAS object)</p>
+      </div>
+    </div>
+  </main>
+  
+  <div class="toast" id="toast"></div>
+  
+  <script>
+    // Journalist data (mirrors build.js PERSONAS)
+    const journalists = {
+      'dr-sarah-kim': {
+        name: 'Dr. Sarah Kim',
+        role: 'R&D Scientist',
+        avatar: '/assets/personas/dr-sarah-kim.svg',
+        bio: '15 years in K-beauty innovation. PhD Cosmetic Chemistry.'
+      },
+      'dr-james-park': {
+        name: 'Dr. James Park',
+        role: 'Clinical Research Director',
+        avatar: '/assets/personas/dr-james-park.svg',
+        bio: '20 years clinical practice. MD from Harvard Medical School.'
+      },
+      'dr-emily-chen': {
+        name: 'Dr. Emily Chen',
+        role: 'Biotechnology Innovation Lead',
+        avatar: '/assets/personas/dr-emily-chen.svg',
+        bio: 'PhD Biochemistry MIT. AI cosmetics formulation pioneer.'
+      },
+      'yuna-lee': {
+        name: 'Yuna Lee',
+        role: 'Beauty Editor',
+        avatar: '/assets/personas/yuna-lee.svg',
+        bio: '6 years beauty journalism. Former Allure Korea editor.'
+      },
+      'alex-thompson': {
+        name: 'Alex Thompson',
+        role: 'Trend Analyst',
+        avatar: '/assets/personas/alex-thompson.svg',
+        bio: '12 years beauty consulting. MBA London Business School.'
+      },
+      'minji-kang': {
+        name: 'Min-ji Kang',
+        role: 'Lifestyle Writer',
+        avatar: '/assets/personas/minji-kang.svg',
+        bio: '10 years lifestyle media. Holistic beauty advocate.'
+      },
+      'dr-david-rodriguez': {
+        name: 'Dr. David Rodriguez',
+        role: 'Sustainability Officer',
+        avatar: '/assets/personas/dr-david-rodriguez.svg',
+        bio: 'PhD Environmental Chemistry. B Corp advisor.'
+      }
+    };
+    
+    // Toast notification
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast ${type} show`;
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+    
+    // Render journalist cards
+    function renderJournalists() {
+      const container = document.getElementById('journalistsList');
+      container.innerHTML = '';
+      
+      for (const [slug, data] of Object.entries(journalists)) {
+        const card = document.createElement('div');
+        card.className = 'journalist-card';
+        card.innerHTML = `
+          <div class="journalist-card__header">
+            <div class="journalist-card__avatar-wrapper">
+              <img src="${data.avatar}" alt="${data.name}" class="journalist-card__avatar" id="avatar-${slug}" onerror="this.src='/assets/images/placeholder.svg'">
+              <label class="journalist-card__avatar-upload" title="Change avatar">
+                <svg viewBox="0 0 24 24"><path d="M12 15.2c-1.8 0-3.2-1.4-3.2-3.2s1.4-3.2 3.2-3.2 3.2 1.4 3.2 3.2-1.4 3.2-3.2 3.2zm7.2-9.6h-3l-1.8-2.4H9.6L7.8 5.6h-3c-1.3 0-2.4 1.1-2.4 2.4v10.8c0 1.3 1.1 2.4 2.4 2.4h14.4c1.3 0 2.4-1.1 2.4-2.4V8c0-1.3-1.1-2.4-2.4-2.4z"/></svg>
+                <input type="file" accept="image/*" onchange="handleImageUpload('${slug}', this)">
+              </label>
+            </div>
+            <div class="journalist-card__info">
+              <h3 class="journalist-card__name">${data.name}</h3>
+              <p class="journalist-card__role">${data.role}</p>
+              <p class="journalist-card__slug">${slug}</p>
+            </div>
+          </div>
+          <p class="journalist-card__bio">${data.bio}</p>
+          <form class="journalist-card__form" onsubmit="handleSave(event, '${slug}')">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" name="name" value="${data.name}" required>
+            </div>
+            <div class="form-group">
+              <label>Role</label>
+              <input type="text" name="role" value="${data.role}" required>
+            </div>
+            <div class="form-group">
+              <label>Bio</label>
+              <textarea name="bio" required>${data.bio}</textarea>
+            </div>
+            <div class="journalist-card__actions">
+              <button type="submit" class="btn btn--primary">Save Changes</button>
+              <a href="/journalist/${slug}.html" class="btn" target="_blank">View Profile</a>
+            </div>
+          </form>
+        `;
+        container.appendChild(card);
+      }
+    }
+    
+    // Handle image upload
+    function handleImageUpload(slug, input) {
+      const file = input.files[0];
+      if (!file) return;
+      
+      // Validate file type
+      const validTypes = ['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml'];
+      if (!validTypes.includes(file.type)) {
+        showToast('Please upload PNG, JPG, WebP, or SVG file', 'error');
+        return;
+      }
+      
+      // Create preview
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const avatarImg = document.getElementById(`avatar-${slug}`);
+        avatarImg.src = e.target.result;
+        
+        // Get file extension
+        const ext = file.name.split('.').pop().toLowerCase();
+        const newFilename = `${slug}.${ext}`;
+        
+        showToast(`Avatar preview updated. Save the file as: content/_assets/personas/${newFilename}`, 'success');
+        
+        // Create download link for the image
+        const downloadLink = document.createElement('a');
+        downloadLink.href = e.target.result;
+        downloadLink.download = newFilename;
+        downloadLink.click();
+      };
+      reader.readAsDataURL(file);
+    }
+    
+    // Handle form save
+    function handleSave(event, slug) {
+      event.preventDefault();
+      
+      const form = event.target;
+      const formData = new FormData(form);
+      
+      const newData = {
+        name: formData.get('name'),
+        role: formData.get('role'),
+        bio: formData.get('bio'),
+        avatar: journalists[slug].avatar
+      };
+      
+      // Update local data
+      journalists[slug] = newData;
+      
+      // Generate the code snippet to copy
+      const codeSnippet = `'${slug}': {
+    name: '${newData.name}',
+    role: '${newData.role}',
+    avatar: '${newData.avatar}',
+    bio: '${newData.bio}'
+  }`;
+      
+      // Copy to clipboard
+      navigator.clipboard.writeText(codeSnippet).then(() => {
+        showToast('Code copied! Paste into build.js PERSONAS object', 'success');
+      }).catch(() => {
+        showToast('Updated locally. Manual update needed in build.js', 'success');
+        console.log('Update build.js with:', codeSnippet);
+      });
+      
+      // Re-render
+      renderJournalists();
+    }
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      renderJournalists();
+    });
+  </script>
+</body>
+</html>
