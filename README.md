@@ -30,7 +30,7 @@ This project demonstrates a modern **serverless CMS** that costs $0/month to ope
 │   └─────────┘  Sync   └───────────┘        └─────────┘      │
 │       ▲                                                      │
 │       │ Obsidian Plugins                                     │
-│       ├─ GitHub Sync (one-click deploy)                      │
+│       ├─ Obsidian Git (auto backup & sync)                   │
 │       ├─ Paste Image Rename (auto image naming)              │
 │       ├─ Templater (article templates)                       │
 │       └─ Linter (YAML formatting)                            │
@@ -230,9 +230,11 @@ This project is configured for **automatic Vercel deployment**:
 
 ### From Obsidian (One-Click)
 
-With **GitHub Sync** plugin installed:
-1. Click the sync icon in Obsidian ribbon
+With **Obsidian Git** plugin installed:
+1. `Cmd+P` → `Obsidian Git: Create backup`
 2. Done! Vercel deploys automatically
+
+Or wait for auto backup (10분마다 자동 실행)
 
 ### Manual
 
@@ -244,7 +246,7 @@ With **GitHub Sync** plugin installed:
 
 | Plugin | Purpose |
 |--------|---------|
-| **GitHub Sync** | One-click push to GitHub → auto deploy |
+| **Obsidian Git** | Auto backup & sync to GitHub |
 | **Paste Image Rename** | Auto-name images: `{filename}_{date}_{n}.png` |
 | **Templater** | Article templates with dynamic fields |
 | **Linter** | Auto-format YAML frontmatter |
@@ -252,9 +254,58 @@ With **GitHub Sync** plugin installed:
 
 ### Plugin Setup Tips
 
-- **GitHub Sync**: Just add your repo URL in settings
+- **Obsidian Git**: See Git Push Management section below
 - **Paste Image Rename**: Pattern: `{{fileName}}_{{DATE:YYYYMMDD}}_{{NNNNN}}`
 - **Images folder**: `content/_assets/images/`
+
+## 🔄 Git Push Management
+
+이 프로젝트는 **Obsidian Git** 플러그인을 사용하여 자동 백업 및 GitHub 동기화를 관리합니다.
+
+### 현재 설정
+
+| 설정 | 값 | 설명 |
+|------|-----|------|
+| **Auto backup interval** | 10분 | 10분마다 자동 커밋 + Push |
+| **Auto pull on startup** | ✅ ON | Obsidian 시작 시 최신 내용 Pull |
+| **Push on backup** | ✅ ON | 백업 시 자동 Push |
+| **Pull before push** | ✅ ON | 충돌 방지를 위해 Push 전 Pull |
+
+### 주요 명령어 (Cmd+P)
+
+| 명령어 | 설명 |
+|--------|------|
+| `Obsidian Git: Create backup` | 즉시 커밋 + Push (가장 많이 사용) |
+| `Obsidian Git: Commit all changes` | 변경사항만 커밋 |
+| `Obsidian Git: Push` | 원격에 Push |
+| `Obsidian Git: Pull` | 원격에서 Pull |
+
+### 커밋 메시지 형식
+
+```
+vault backup: 2026-01-16 22:07:32
+```
+
+### 상태 확인
+
+- Obsidian 하단 상태바에서 Git 상태 확인 가능
+- ✓ 표시: 동기화 완료
+- 숫자 표시: 변경된 파일 수
+
+### 수동 Push (터미널)
+
+```bash
+cd "/path/to/ai-diven_cos"
+git add .
+git commit -m "your message"
+git push
+```
+
+### 플러그인 설정 동기화
+
+이 저장소는 **공유용**이므로 플러그인 설정(data.json)도 Git에 포함됩니다.
+- Clone 시 플러그인 설정이 자동으로 적용됨
+- 설정 변경 시 함께 Push됨
 
 ## 📝 Documentation
 
