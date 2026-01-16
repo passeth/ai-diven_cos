@@ -11,14 +11,14 @@ tags:
   - skincare
 date: 2025-01-13
 updated: 2025-01-13
-featured_image: /assets/images/118.jpg
+featured_image: /assets/images/2025-01-13-niacinamide-complete-guide_20260116_1.png
 excerpt: "Everything you need to know about niacinamide: how it works, optimal concentrations, what to pair it with, and the latest research findings."
 status: published
 featured: false
 homepage_priority: 4
 reading_time: 10 min
 ---
-
+![[2025-01-13-niacinamide-complete-guide_20260116_1.png]]
 # Niacinamide: The Complete Science-Backed Guide
 
 Niacinamide (vitamin B3) has become one of the most popular skincare ingredients—and for good reason. But between marketing hype and actual science, what does the research really say?
@@ -34,6 +34,7 @@ Niacinamide is the active form of vitamin B3 (niacin). Unlike many skincare ingr
 
 > "The data suggests that niacinamide operates through multiple pathways simultaneously, which explains its versatility. It's genuinely one of the most well-researched actives in cosmetic science." — Dr. Sarah Kim
 
+![[content/_assets/images/2025-01-13-niacinamide-complete-guide_20260116_2.png]]
 ## Proven Benefits
 
 ### 1. Barrier Repair
@@ -59,6 +60,7 @@ Niacinamide is the active form of vitamin B3 (niacin). Unlike many skincare ingr
 **The Science:** Stimulates collagen production, reduces fine lines, and improves skin elasticity.
 
 **The Evidence:** 5% niacinamide showed significant improvement in fine lines after 12 weeks.
+
 
 ## Optimal Concentration
 

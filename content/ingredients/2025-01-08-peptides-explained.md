@@ -11,7 +11,7 @@ tags:
   - science
 date: 2025-01-08
 updated: 2025-01-08
-featured_image: /assets/images/105.webp
+featured_image: /assets/images/2025-01-08-peptides-explained_20260116_1.png
 excerpt: Not all peptides are created equal. Here's the science behind which peptides actually deliver results and which are just marketing.
 status: published
 featured: true
