@@ -1,20 +1,24 @@
 ---
-title: "The Correct Order to Layer Your Skincare Products"
-slug: "skincare-layering-order-guide"
-journalist: "yuna-lee"
-persona_role: "Beauty Editor"
-category: "tips"
-tags: ["how-to", "routine", "beginners", "layering"]
-date: "2025-01-07"
-updated: "2025-01-07"
-featured_image: "/assets/images/placeholder.webp"
-excerpt: "Confused about product order? Here's the definitive guide to layering skincare for maximum effectiveness, from cleanser to SPF."
-status: "published"
+title: The Correct Order to Layer Your Skincare Products
+slug: skincare-layering-order-guide
+journalist: yuna-lee
+persona_role: Beauty Editor
+category: tips
+tags:
+  - how-to
+  - routine
+  - beginners
+  - layering
+date: 2025-01-07
+updated: 2025-01-07
+featured_image: /assets/images/119.jpg
+excerpt: Confused about product order? Here's the definitive guide to layering skincare for maximum effectiveness, from cleanser to SPF.
+status: published
 featured: false
 homepage_priority: 6
-reading_time: "5 min"
+reading_time: 5 min
 ---
-
+![[119.jpg]]
 # The Correct Order to Layer Skincare
 
 Product order matters more than you think. Apply things in the wrong sequence and you're either wasting product or blocking absorption. Here's how to get it right.

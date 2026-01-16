@@ -1,20 +1,24 @@
 ---
 title: "Peptides in Skincare: What They Do and Which Ones Work"
-slug: "peptides-skincare-explained"
-journalist: "dr-sarah-kim"
-persona_role: "R&D Scientist"
-category: "ingredients"
-tags: ["peptides", "ingredients", "anti-aging", "science"]
-date: "2025-01-08"
-updated: "2025-01-08"
-featured_image: "/assets/images/placeholder.webp"
-excerpt: "Not all peptides are created equal. Here's the science behind which peptides actually deliver results and which are just marketing."
-status: "published"
+slug: peptides-skincare-explained
+journalist: dr-sarah-kim
+persona_role: R&D Scientist
+category: ingredients
+tags:
+  - peptides
+  - ingredients
+  - anti-aging
+  - science
+date: 2025-01-08
+updated: 2025-01-08
+featured_image: /assets/images/105.webp
+excerpt: Not all peptides are created equal. Here's the science behind which peptides actually deliver results and which are just marketing.
+status: published
 featured: false
 homepage_priority: 6
-reading_time: "9 min"
+reading_time: 9 min
 ---
-
+![[@ONGOING_NEW/ai-diven_cos/content/_assets/images/105.webp]]
 # Peptides in Skincare: What Works
 
 Peptides are everywhere in anti-aging skincare. But with hundreds of peptides on the market, how do you know which ones actually work?

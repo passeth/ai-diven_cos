@@ -1,20 +1,25 @@
 ---
 title: "The 5 Best Vitamin C Serums of 2025: Tested & Ranked"
-slug: "best-vitamin-c-serums-2025"
-journalist: "yuna-lee"
-persona_role: "Beauty Editor"
-category: "products"
-tags: ["review", "vitamin-c", "serums", "skincare", "comparison"]
-date: "2025-01-14"
-updated: "2025-01-14"
-featured_image: "/assets/images/placeholder.webp"
-excerpt: "After testing 23 vitamin C serums for 12 weeks, here are our definitive rankings based on efficacy, texture, stability, and value."
-status: "published"
+slug: best-vitamin-c-serums-2025
+journalist: yuna-lee
+persona_role: Beauty Editor
+category: products
+tags:
+  - review
+  - vitamin-c
+  - serums
+  - skincare
+  - comparison
+date: 2025-01-14
+updated: 2025-01-14
+featured_image: /assets/images/vitamin.jpg
+excerpt: After testing 23 vitamin C serums for 12 weeks, here are our definitive rankings based on efficacy, texture, stability, and value.
+status: published
 featured: true
 homepage_priority: 3
-reading_time: "12 min"
+reading_time: 12 min
 ---
-
+![[vitamin.jpg]]
 # The 5 Best Vitamin C Serums of 2025
 
 I've tested 23 different vitamin C serums over the past 12 weeks—my bathroom looked like a skincare laboratory. Here's everything you need to know about which ones actually work.

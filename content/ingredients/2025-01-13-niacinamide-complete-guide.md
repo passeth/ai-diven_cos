@@ -1,20 +1,24 @@
 ---
 title: "Niacinamide: The Complete Science-Backed Guide"
-slug: "niacinamide-complete-guide"
-journalist: "dr-sarah-kim"
-persona_role: "R&D Scientist"
-category: "ingredients"
-tags: ["niacinamide", "ingredients", "science", "skincare"]
-date: "2025-01-13"
-updated: "2025-01-13"
-featured_image: "/assets/images/placeholder.webp"
+slug: niacinamide-complete-guide
+journalist: dr-sarah-kim
+persona_role: R&D Scientist
+category: ingredients
+tags:
+  - niacinamide
+  - ingredients
+  - science
+  - skincare
+date: 2025-01-13
+updated: 2025-01-13
+featured_image: /assets/images/118.jpg
 excerpt: "Everything you need to know about niacinamide: how it works, optimal concentrations, what to pair it with, and the latest research findings."
-status: "published"
+status: published
 featured: false
 homepage_priority: 4
-reading_time: "10 min"
+reading_time: 10 min
 ---
-
+![[@ONGOING_NEW/ai-diven_cos/content/_assets/images/118.jpg]]
 # Niacinamide: The Complete Science-Backed Guide
 
 Niacinamide (vitamin B3) has become one of the most popular skincare ingredients—and for good reason. But between marketing hype and actual science, what does the research really say?

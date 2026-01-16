@@ -1,20 +1,24 @@
 ---
 title: "Personalized Skincare: The $10B Market Brands Are Chasing"
-slug: "personalized-skincare-market-trends"
-journalist: "alex-thompson"
-persona_role: "Trend Analyst"
-category: "trends"
-tags: ["market-trends", "personalization", "innovation", "business"]
-date: "2025-01-11"
-updated: "2025-01-11"
-featured_image: "/assets/images/placeholder.webp"
-excerpt: "The personalized skincare market is projected to hit $10B by 2027. Here's what's driving the trend and which companies are leading the charge."
-status: "published"
+slug: personalized-skincare-market-trends
+journalist: alex-thompson
+persona_role: Trend Analyst
+category: trends
+tags:
+  - market-trends
+  - personalization
+  - innovation
+  - business
+date: 2025-01-11
+updated: 2025-01-11
+featured_image: /assets/images/114.jpg
+excerpt: The personalized skincare market is projected to hit $10B by 2027. Here's what's driving the trend and which companies are leading the charge.
+status: published
 featured: false
 homepage_priority: 4
-reading_time: "8 min"
+reading_time: 8 min
 ---
-
+![[@ONGOING_NEW/ai-diven_cos/content/_assets/images/114.jpg]]
 # Personalized Skincare: The $10B Market
 
 The era of one-size-fits-all skincare is ending. Personalization isn't just a trend—it's restructuring the entire industry.

@@ -1,20 +1,24 @@
 ---
-title: "Machine Learning is Discovering New Skincare Ingredients"
-slug: "machine-learning-ingredient-discovery"
-journalist: "dr-emily-chen"
-persona_role: "Biotechnology Innovation Lead"
-category: "development"
-tags: ["ai-formulation", "ingredients", "innovation", "biotechnology"]
-date: "2025-01-12"
-updated: "2025-01-12"
-featured_image: "/assets/images/placeholder.webp"
-excerpt: "How AI algorithms are identifying promising compounds from massive molecular databases, accelerating the discovery of next-generation skincare actives."
-status: "published"
+title: Machine Learning is Discovering New Skincare Ingredients
+slug: machine-learning-ingredient-discovery
+journalist: dr-emily-chen
+persona_role: Biotechnology Innovation Lead
+category: development
+tags:
+  - ai-formulation
+  - ingredients
+  - innovation
+  - biotechnology
+date: 2025-01-12
+updated: 2025-01-12
+featured_image: /assets/images/2.webp
+excerpt: How AI algorithms are identifying promising compounds from massive molecular databases, accelerating the discovery of next-generation skincare actives.
+status: published
 featured: true
 homepage_priority: 2
-reading_time: "10 min"
+reading_time: 10 min
 ---
-
+![[assets/images/2.webp]]
 # Machine Learning is Discovering New Skincare Ingredients
 
 The cosmetics industry has long relied on serendipity and incremental innovation for ingredient discovery. A researcher notices an effect, investigates, and years later, a new active ingredient emerges. Machine learning is rewriting this playbook entirely.

@@ -1,20 +1,25 @@
 ---
-title: "This $18 Hydrating Toner Outperformed My $60 Favorite"
-slug: "hydrating-toner-review-affordable"
-journalist: "yuna-lee"
-persona_role: "Beauty Editor"
-category: "products"
-tags: ["review", "toner", "hydration", "skincare", "affordable"]
-date: "2025-01-10"
-updated: "2025-01-10"
-featured_image: "/assets/images/placeholder.webp"
-excerpt: "When a reader recommended this drugstore toner, I was skeptical. After 6 weeks of testing, I'm genuinely impressed—and a little annoyed at myself."
-status: "published"
-featured: false
+title: This $18 Hydrating Toner Outperformed My $60 Favorite
+slug: hydrating-toner-review-affordable
+journalist: yuna-lee
+persona_role: Beauty Editor
+category: products
+tags:
+  - review
+  - toner
+  - hydration
+  - skincare
+  - affordable
+date: 2025-01-10
+updated: 2025-01-10
+featured_image: /assets/images/product_hydrating.webp
+excerpt: When a reader recommended this drugstore toner, I was skeptical. After 6 weeks of testing, I'm genuinely impressed—and a little annoyed at myself.
+status: published
+featured: true
 homepage_priority: 5
-reading_time: "6 min"
+reading_time: 6 min
 ---
-
+![[@ONGOING_NEW/ai-diven_cos/content/_assets/images/product_hydrating.webp]]
 # This $18 Toner Outperformed My $60 Favorite
 
 Let me preface this by saying I've been loyal to my Japanese essence toner for three years. It's expensive, it's elegant, and I've recommended it to hundreds of readers.

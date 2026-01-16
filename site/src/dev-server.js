@@ -29,7 +29,7 @@ const MIME_TYPES = {
 };
 
 // Run build first
-console.log('\\n🔨 Building site...\\n');
+console.log('\n>> Initial build...\n');
 require('./build.js');
 
 // Create server
@@ -96,9 +96,9 @@ const server = http.createServer((req, res) => {
 
 // Start server
 server.listen(PORT, () => {
-  console.log(`\\n🚀 Development server running at:`);
-  console.log(`   http://localhost:${PORT}`);
-  console.log(`\\nPress Ctrl+C to stop\\n`);
+  console.log(`\n>> Development server running at: http://localhost:${PORT}`);
+  console.log(`>> Watching for file changes...`);
+  console.log(`>> Press Ctrl+C to stop\n`);
 });
 
 // Watch for file changes (simple file watcher)
@@ -117,13 +117,15 @@ watchDirs.forEach(dir => {
         // Debounce rebuilds
         clearTimeout(rebuildTimeout);
         rebuildTimeout = setTimeout(() => {
-          console.log(`\\n📝 Change detected: ${filename}`);
-          console.log('🔨 Rebuilding...\\n');
+          console.log(`\n>> Change detected: ${filename}`);
+          console.log('>> Rebuilding...\n');
           try {
+            // Clear require cache to force fresh build
+            delete require.cache[require.resolve('./build.js')];
             require('./build.js');
-            console.log('✅ Rebuild complete\\n');
+            console.log('>> Rebuild complete\n');
           } catch (err) {
-            console.error('❌ Build error:', err.message);
+            console.error('>> Build error:', err.message);
           }
         }, 500);
       }

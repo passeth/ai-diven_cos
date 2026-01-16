@@ -1,20 +1,24 @@
 ---
 title: "Sustainable Beauty 2025: Beyond Greenwashing"
-slug: "sustainable-beauty-2025-trends"
-journalist: "dr-david-rodriguez"
-persona_role: "Sustainability Officer"
-category: "trends"
-tags: ["sustainability", "market-trends", "clean-beauty", "environment"]
-date: "2025-01-09"
-updated: "2025-01-09"
-featured_image: "/assets/images/placeholder.webp"
-excerpt: "The sustainability conversation in beauty has matured. Here's what real progress looks like versus marketing theater."
-status: "published"
+slug: sustainable-beauty-2025-trends
+journalist: dr-david-rodriguez
+persona_role: Sustainability Officer
+category: trends
+tags:
+  - sustainability
+  - market-trends
+  - clean-beauty
+  - environment
+date: 2025-01-09
+updated: 2025-01-09
+featured_image: /assets/images/117.jpg
+excerpt: The sustainability conversation in beauty has matured. Here's what real progress looks like versus marketing theater.
+status: published
 featured: false
 homepage_priority: 5
-reading_time: "7 min"
+reading_time: 7 min
 ---
-
+![[@ONGOING_NEW/ai-diven_cos/content/_assets/images/117.jpg]]
 # Sustainable Beauty 2025: What's Real vs. Marketing
 
 The beauty industry produces 120 billion units of packaging annually. But is the "sustainable beauty" movement actually making a difference, or is it elaborate greenwashing?

@@ -24,43 +24,43 @@ const PERSONAS = {
   'dr-sarah-kim': {
     name: 'Dr. Sarah Kim',
     role: 'R&D Scientist',
-    avatar: '/assets/personas/dr-sarah-kim.webp',
+    avatar: '/assets/personas/dr-sarah-kim.svg',
     bio: '15 years in K-beauty innovation. PhD Cosmetic Chemistry.'
   },
   'dr-james-park': {
     name: 'Dr. James Park',
     role: 'Clinical Research Director',
-    avatar: '/assets/personas/dr-james-park.webp',
+    avatar: '/assets/personas/dr-james-park.svg',
     bio: '20 years clinical practice. MD from Harvard Medical School.'
   },
   'dr-emily-chen': {
     name: 'Dr. Emily Chen',
     role: 'Biotechnology Innovation Lead',
-    avatar: '/assets/personas/dr-emily-chen.webp',
+    avatar: '/assets/personas/dr-emily-chen.svg',
     bio: 'PhD Biochemistry MIT. AI cosmetics formulation pioneer.'
   },
   'yuna-lee': {
     name: 'Yuna Lee',
     role: 'Beauty Editor',
-    avatar: '/assets/personas/yuna-lee.webp',
+    avatar: '/assets/personas/yuna-lee.svg',
     bio: '6 years beauty journalism. Former Allure Korea editor.'
   },
   'alex-thompson': {
     name: 'Alex Thompson',
     role: 'Trend Analyst',
-    avatar: '/assets/personas/alex-thompson.webp',
+    avatar: '/assets/personas/alex-thompson.svg',
     bio: '12 years beauty consulting. MBA London Business School.'
   },
   'minji-kang': {
     name: 'Min-ji Kang',
     role: 'Lifestyle Writer',
-    avatar: '/assets/personas/minji-kang.webp',
+    avatar: '/assets/personas/minji-kang.svg',
     bio: '10 years lifestyle media. Holistic beauty advocate.'
   },
   'dr-david-rodriguez': {
     name: 'Dr. David Rodriguez',
     role: 'Sustainability Officer',
-    avatar: '/assets/personas/dr-david-rodriguez.webp',
+    avatar: '/assets/personas/dr-david-rodriguez.svg',
     bio: 'PhD Environmental Chemistry. B Corp advisor.'
   }
 };
@@ -73,6 +73,20 @@ const CATEGORIES = {
   trends: { name: 'Trends', description: 'Industry trends & research', color: '#f59e0b' },
   tips: { name: 'Tips', description: 'Beauty tips & usage guides', color: '#8b5cf6' }
 };
+
+/**
+ * Convert Obsidian-style image links to HTML
+ * ![[@ONGOING_NEW/ai-diven_cos/content/_assets/images/file.webp]] -> <img src="/assets/images/file.webp">
+ */
+function convertObsidianImages(markdown) {
+  // Pattern: ![[path/to/image.ext]] - handles full Obsidian vault paths
+  return markdown.replace(/!\[\[@?([^\]]+\.(jpg|jpeg|png|gif|webp|svg))\]\]/gi, (match, filepath) => {
+    // Extract just the filename from full path
+    const filename = filepath.split('/').pop();
+    const altText = filename.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ');
+    return `<img src="/assets/images/${filename}" alt="${altText}" class="article-image">`;
+  });
+}
 
 /**
  * Read all markdown files from content directory
@@ -96,10 +110,12 @@ function getArticles() {
       const { data: frontmatter, content: markdown } = matter(content);
       
       if (frontmatter.status === 'published') {
+        // Convert Obsidian image links before markdown processing
+        const processedMarkdown = convertObsidianImages(markdown);
         articles.push({
           ...frontmatter,
-          content: marked(markdown),
-          markdown,
+          content: marked(processedMarkdown),
+          markdown: processedMarkdown,
           filePath,
           category,
           persona: PERSONAS[frontmatter.journalist] || PERSONAS['yuna-lee']
@@ -144,16 +160,29 @@ function renderTemplate(templateName, data) {
 }
 
 /**
+ * Get image path with fallback to category placeholder
+ */
+function getImagePath(article) {
+  // Use featured_image from YAML if exists
+  if (article.featured_image) {
+    return article.featured_image;
+  }
+  // Fallback to category-specific placeholder SVG
+  return `/assets/images/${article.category}-placeholder.svg`;
+}
+
+/**
  * Generate article card HTML
  */
 function generateArticleCard(article, size = 'normal') {
   const categoryData = CATEGORIES[article.category] || CATEGORIES.tips;
+  const imagePath = getImagePath(article);
   
   return `
     <article class="article-card article-card--${size}">
       <a href="/articles/${article.slug}.html" class="article-card__link">
         <div class="article-card__image">
-          <img src="${article.featured_image || '/assets/images/placeholder.webp'}" 
+          <img src="${imagePath}" 
                alt="${article.title}" 
                loading="lazy">
           <span class="article-card__category" style="background-color: ${categoryData.color}">
@@ -236,7 +265,7 @@ function buildArticlePages(articles) {
       siteName: CONFIG.siteName,
       title: article.title,
       content: article.content,
-      featured_image: article.featured_image,
+      featured_image: getImagePath(article),
       category: categoryData.name,
       categorySlug: article.category,
       categoryColor: categoryData.color,
@@ -433,17 +462,16 @@ function formatDate(dateStr) {
  * Main build function
  */
 async function build() {
-  console.log('\\n🔨 Building AI Cosmetics Journal...\\n');
+  console.log('\n>> Building AI Cosmetics Journal...\n');
   
   const startTime = Date.now();
   
-  // Clean and create output directory
-  fs.rmSync(CONFIG.outputDir, { recursive: true, force: true });
+  // Create output directory (don't delete to avoid Dropbox lock issues)
   fs.mkdirSync(CONFIG.outputDir, { recursive: true });
   
   // Get all articles
   const articles = getArticles();
-  console.log(`Found ${articles.length} published articles\\n`);
+  console.log(`Found ${articles.length} published articles\n`);
   
   // Build all pages
   buildHomepage(articles);
@@ -455,7 +483,7 @@ async function build() {
   copyPublicAssets();
   
   const buildTime = Date.now() - startTime;
-  console.log(`\\n✅ Build complete in ${buildTime}ms\\n`);
+  console.log(`\n>> Build complete in ${buildTime}ms\n`);
 }
 
 // Run build

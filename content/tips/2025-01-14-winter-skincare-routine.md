@@ -1,20 +1,24 @@
 ---
-title: "How to Adapt Your Skincare Routine for Winter"
-slug: "winter-skincare-routine-guide"
-journalist: "minji-kang"
-persona_role: "Lifestyle Writer"
-category: "tips"
-tags: ["seasonal", "routine", "winter", "how-to"]
-date: "2025-01-14"
-updated: "2025-01-14"
-featured_image: "/assets/images/placeholder.webp"
-excerpt: "Your summer routine won't cut it when temperatures drop. Here's how to transition your skincare for the colder months without disrupting your skin's balance."
-status: "published"
+title: How to Adapt Your Skincare Routine for Winter
+slug: winter-skincare-routine-guide
+journalist: minji-kang
+persona_role: Lifestyle Writer
+category: tips
+tags:
+  - seasonal
+  - routine
+  - winter
+  - how-to
+date: 2025-01-14
+updated: 2025-01-14
+featured_image: /assets/images/1115.jpg
+excerpt: Your summer routine won't cut it when temperatures drop. Here's how to transition your skincare for the colder months without disrupting your skin's balance.
+status: published
 featured: false
 homepage_priority: 5
-reading_time: "6 min"
+reading_time: 6 min
 ---
-
+![[@ONGOING_NEW/ai-diven_cos/content/_assets/images/1115.jpg]]
 # Adapting Your Skincare for Winter
 
 Winter doesn't just mean cozy sweaters—it means your skin faces an entirely different environment. Low humidity, harsh winds, and indoor heating all conspire against your moisture barrier.

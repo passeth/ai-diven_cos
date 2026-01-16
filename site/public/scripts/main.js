@@ -176,11 +176,11 @@
         tocList.appendChild(li);
       });
       
-      // Add styles
+      // Add styles (dark theme)
       toc.style.cssText = `
-        background: #f9fafb;
+        background: rgba(255, 255, 255, 0.05);
         padding: 1.5rem;
-        border-radius: 0.5rem;
+        border: 1px dashed #333;
         margin-bottom: 2rem;
       `;
       
@@ -188,7 +188,7 @@
         font-size: 0.875rem;
         text-transform: uppercase;
         letter-spacing: 0.05em;
-        color: #6b7280;
+        color: #888;
         margin-bottom: 1rem;
       `;
       
@@ -204,7 +204,7 @@
       
       toc.querySelectorAll('a').forEach(function(a) {
         a.style.cssText = `
-          color: #4f46e5;
+          color: #fff;
           text-decoration: none;
           font-size: 0.9375rem;
         `;
@@ -219,8 +219,8 @@
   }
 
   // Console message
-  console.log('%c🧪 AI Cosmetics Innovation Journal', 
-    'font-size: 18px; font-weight: bold; color: #6366f1;');
+  console.log('%cAI Cosmetics Innovation Journal', 
+    'font-size: 18px; font-weight: bold; color: #fff;');
   console.log('%cPowered by AI-driven insights', 
     'font-size: 12px; color: #6b7280;');
 
