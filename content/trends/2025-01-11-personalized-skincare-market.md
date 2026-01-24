@@ -11,7 +11,6 @@ tags:
   - business
 date: 2025-01-11
 updated: 2025-01-11
-featured_image:
 excerpt: The personalized skincare market is projected to hit $10B by 2027. Here's what's driving the trend and which companies are leading the charge.
 status: published
 featured: true

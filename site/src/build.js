@@ -197,30 +197,37 @@ function renderTemplate(templateName, data) {
 }
 
 /**
- * Get image path with fallback to first image in content, then placeholder
+ * Get image path - prioritizes first image in content body, then featured_image from YAML
  */
 function getImagePath(article) {
-  // 1. Use featured_image from YAML if exists
-  if (article.featured_image) {
-    // If it's just a filename, add the path
-    if (!article.featured_image.startsWith('/')) {
-      return `/assets/images/${article.featured_image}`;
-    }
-    return article.featured_image;
-  }
-  
-  // 2. Find first image in article content (Obsidian format or standard markdown)
+  // 1. Find first image in article content (Obsidian format)
   const obsidianImageMatch = article.rawContent?.match(/!\[\[@?[^\]]*\/([^\]\/]+\.(jpg|jpeg|png|gif|webp))\]\]/i);
   if (obsidianImageMatch) {
     return `/assets/images/${obsidianImageMatch[1]}`;
   }
-  
+
+  // 2. Find first image in article content (standard markdown format)
   const markdownImageMatch = article.rawContent?.match(/!\[.*?\]\(.*?\/([^\/\)]+\.(jpg|jpeg|png|gif|webp))\)/i);
   if (markdownImageMatch) {
     return `/assets/images/${markdownImageMatch[1]}`;
   }
-  
-  // 3. Fallback to category-specific placeholder SVG
+
+  // 3. Find first HTML img tag (for converted images)
+  const htmlImageMatch = article.rawContent?.match(/<img[^>]+src=["'](?:\/assets\/images\/)?([^"'\/]+\.(jpg|jpeg|png|gif|webp))["']/i);
+  if (htmlImageMatch) {
+    return `/assets/images/${htmlImageMatch[1]}`;
+  }
+
+  // 4. Fallback to featured_image from YAML if exists
+  if (article.featured_image) {
+    // If it's just a filename, add the path
+    if (!article.featured_image.startsWith('/') && !article.featured_image.startsWith('http')) {
+      return `/assets/images/${article.featured_image}`;
+    }
+    return article.featured_image;
+  }
+
+  // 5. Final fallback to category-specific placeholder SVG
   return `/assets/images/${article.category}-placeholder.svg`;
 }
 
@@ -230,18 +237,38 @@ function getImagePath(article) {
 function generateArticleCard(article, size = 'normal') {
   const categoryData = getCategoryMeta(article.category);
   const imagePath = getImagePath(article);
-  
+
+  // Check if article has video_url for video embed
+  let mediaHtml;
+  if (article.video_url) {
+    mediaHtml = `
+      <div class="article-card__video">
+        <iframe src="${article.video_url}"
+                title="${article.title}"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                loading="lazy"></iframe>
+        <span class="article-card__category" style="background-color: ${categoryData.color}">
+          ${categoryData.name}
+        </span>
+      </div>`;
+  } else {
+    mediaHtml = `
+      <div class="article-card__image">
+        <img src="${imagePath}"
+             alt="${article.title}"
+             loading="lazy">
+        <span class="article-card__category" style="background-color: ${categoryData.color}">
+          ${categoryData.name}
+        </span>
+      </div>`;
+  }
+
   return `
-    <article class="article-card article-card--${size}">
+    <article class="article-card article-card--${size}${article.video_url ? ' article-card--video' : ''}">
       <a href="/articles/${article.slug}.html" class="article-card__link">
-        <div class="article-card__image">
-          <img src="${imagePath}" 
-               alt="${article.title}" 
-               loading="lazy">
-          <span class="article-card__category" style="background-color: ${categoryData.color}">
-            ${categoryData.name}
-          </span>
-        </div>
+        ${mediaHtml}
         <div class="article-card__content">
           <h3 class="article-card__title">${article.title}</h3>
           <p class="article-card__excerpt">${article.excerpt || ''}</p>
