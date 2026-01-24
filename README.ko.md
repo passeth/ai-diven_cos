@@ -46,6 +46,106 @@ npm run dev
 
 ---
 
+## 📝 콘텐츠 워크플로우
+
+### 작동 방식
+
+```
+┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│   Obsidian   │     │    GitHub    │     │    Vercel    │     │   웹사이트   │
+│  노트 작성   │ ──▶ │   Git Push   │ ──▶ │  자동 빌드   │ ──▶ │    완료!     │
+└──────────────┘     └──────────────┘     └──────────────┘     └──────────────┘
+```
+
+1. **작성** - `content/` 폴더에서 Obsidian으로 노트 작성
+2. **저장** - 파일 저장 (Ctrl+S / Cmd+S)
+3. **Push** - GitHub에 Push (자동 또는 Obsidian Git으로 수동)
+4. **배포** - Vercel에서 자동 배포
+5. **완료** - 사이트에 반영!
+
+### 노트 작성하기
+
+1. 적절한 `content/` 하위 폴더에 새 `.md` 파일 생성:
+   - `content/development/` - R&D 아티클
+   - `content/products/` - 제품 리뷰
+   - `content/ingredients/` - 성분 과학
+   - `content/trends/` - 업계 트렌드
+   - `content/tips/` - 사용법 가이드
+   - `content/videos/` - YouTube 노트
+
+2. 상단에 YAML frontmatter 추가:
+   ```yaml
+   ---
+   title: "아티클 제목"
+   slug: your-url-slug
+   journalist: dr-emily-chen
+   category: development
+   tags:
+     - 태그1
+     - 태그2
+   date: 2025-01-20
+   excerpt: "아티클 요약"
+   status: published
+   featured: false
+   reading_time: 5 min
+   ---
+   ```
+
+3. frontmatter 아래에 마크다운으로 콘텐츠 작성
+
+4. 저장 → Push → 완료!
+
+### 이미지 관리
+
+#### 이미지 추가하기
+
+노트에 이미지를 **붙여넣기** (Ctrl+V / Cmd+V)하면 **Paste Image Rename** 플러그인이:
+- 자동 이름 지정: `{노트명}_{YYYYMMDD}_{N}.jpg`
+- 자동 저장 위치: `content/_assets/images/`
+
+예시: `2025-01-20-skincare-guide.md`에 붙여넣으면:
+```
+content/_assets/images/2025-01-20-skincare-guide_20250120_1.jpg
+```
+
+#### 이미지 표시 우선순위
+
+아티클 카드(홈페이지, 카테고리 페이지)에서 이미지 표시 순서:
+1. **노트 본문의 첫 번째 이미지** (Obsidian 또는 Markdown 형식)
+2. YAML frontmatter의 `featured_image` (폴백)
+3. 카테고리 플레이스홀더 (최종 폴백)
+
+#### 비디오 썸네일
+
+YAML에 `video_url`이 있는 비디오 노트는 이미지 대신 비디오 임베드가 표시됩니다.
+
+#### ⚠️ 이미지 용량 가이드라인 (Git 관리를 위해 중요)
+
+Git은 파일 크기 제한이 있습니다. 이미지를 최적화하세요:
+
+| 가이드라인 | 권장 |
+|-----------|------|
+| **최대 파일 크기** | 이미지당 5MB 미만 |
+| **권장** | 이미지당 500KB 미만 |
+| **포맷** | WebP 권장 (가장 작음), JPG 가능 |
+| **해상도** | 아티클용 최대 너비 1920px |
+| **총 저장소 크기** | 최적 성능을 위해 1GB 미만 유지 |
+
+**팁:**
+- **Image Converter** 플러그인으로 WebP 자동 변환
+- 붙여넣기 전 이미지 압축 (TinyPNG, Squoosh 등 사용)
+- GitHub은 100MB 이상 파일 차단
+- 큰 저장소 = 새 사용자의 Clone 속도 저하
+
+#### Image Converter 플러그인 설정
+
+포함된 Image Converter 플러그인이 붙여넣은 이미지를 자동 변환:
+- 포맷: **WebP** (PNG보다 80% 작음)
+- 품질: **85%** (좋은 균형)
+- 최대 너비: **1920px**
+
+---
+
 ## 이 템플릿으로 만들 수 있는 것
 
 블로그, 저널, 문서 사이트 등 콘텐츠 중심 웹사이트를 만들 수 있습니다:

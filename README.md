@@ -48,6 +48,106 @@ npm run dev
 
 ---
 
+## 📝 Content Workflow
+
+### How It Works
+
+```
+┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│   Obsidian   │     │    GitHub    │     │    Vercel    │     │   Website    │
+│  Write Note  │ ──▶ │  Git Push    │ ──▶ │  Auto Build  │ ──▶ │    Live!     │
+└──────────────┘     └──────────────┘     └──────────────┘     └──────────────┘
+```
+
+1. **Write** a note in `content/` folder using Obsidian
+2. **Save** the file (Ctrl+S / Cmd+S)
+3. **Push** to GitHub (auto or manual via Obsidian Git)
+4. **Deploy** happens automatically on Vercel
+5. **Live** - your site is updated!
+
+### Writing Notes
+
+1. Create a new `.md` file in the appropriate `content/` subfolder:
+   - `content/development/` - R&D articles
+   - `content/products/` - Product reviews
+   - `content/ingredients/` - Ingredient science
+   - `content/trends/` - Industry trends
+   - `content/tips/` - How-to guides
+   - `content/videos/` - YouTube notes
+
+2. Add YAML frontmatter at the top:
+   ```yaml
+   ---
+   title: "Your Article Title"
+   slug: your-url-slug
+   journalist: dr-emily-chen
+   category: development
+   tags:
+     - tag1
+     - tag2
+   date: 2025-01-20
+   excerpt: "Brief summary of your article"
+   status: published
+   featured: false
+   reading_time: 5 min
+   ---
+   ```
+
+3. Write your content in Markdown below the frontmatter
+
+4. Save → Push → Done!
+
+### Managing Images
+
+#### Adding Images
+
+Simply **paste** an image into your note (Ctrl+V / Cmd+V). The **Paste Image Rename** plugin will:
+- Auto-rename: `{notename}_{YYYYMMDD}_{N}.jpg`
+- Auto-save to: `content/_assets/images/`
+
+Example: Pasting into `2025-01-20-skincare-guide.md` creates:
+```
+content/_assets/images/2025-01-20-skincare-guide_20250120_1.jpg
+```
+
+#### Image Display Priority
+
+Article cards (homepage, category pages) display images in this order:
+1. **First image in note body** (Obsidian or Markdown format)
+2. `featured_image` from YAML frontmatter (fallback)
+3. Category placeholder (final fallback)
+
+#### Video Thumbnails
+
+For video notes with `video_url` in YAML, the video embed is displayed instead of an image.
+
+#### ⚠️ Image Size Guidelines (Important for Git)
+
+Git has file size limits. Keep images optimized:
+
+| Guideline | Recommendation |
+|-----------|----------------|
+| **Max file size** | Under 5MB per image |
+| **Recommended** | Under 500KB per image |
+| **Format** | WebP preferred (smallest), JPG acceptable |
+| **Resolution** | 1920px max width for articles |
+| **Total repo size** | Keep under 1GB for best performance |
+
+**Tips:**
+- Use the **Image Converter** plugin to auto-convert to WebP
+- Compress images before pasting (use TinyPNG, Squoosh, etc.)
+- GitHub blocks files over 100MB
+- Large repos = slow clones for new users
+
+#### Image Converter Plugin Settings
+
+The included Image Converter plugin auto-converts pasted images:
+- Format: **WebP** (80% smaller than PNG)
+- Quality: **85%** (good balance)
+- Max width: **1920px**
+
+---
+
 ## What You Can Build
 
 Use this template to create blogs, journals, documentation sites, or any content-driven website:
