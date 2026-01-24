@@ -200,14 +200,16 @@ function renderTemplate(templateName, data) {
  * Get image path - prioritizes first image in content body, then featured_image from YAML
  */
 function getImagePath(article) {
-  // 1. Find first image in article content (Obsidian format)
-  const obsidianImageMatch = article.rawContent?.match(/!\[\[@?[^\]]*\/([^\]\/]+\.(jpg|jpeg|png|gif|webp))\]\]/i);
+  // 1. Find first image in article content (Obsidian format - with or without path)
+  // Matches: ![[image.jpg]] or ![[path/to/image.jpg]] or ![[@vault/path/image.jpg]]
+  const obsidianImageMatch = article.rawContent?.match(/!\[\[@?(?:[^\]]*\/)?([^\]\/]+\.(jpg|jpeg|png|gif|webp))\]\]/i);
   if (obsidianImageMatch) {
     return `/assets/images/${obsidianImageMatch[1]}`;
   }
 
-  // 2. Find first image in article content (standard markdown format)
-  const markdownImageMatch = article.rawContent?.match(/!\[.*?\]\(.*?\/([^\/\)]+\.(jpg|jpeg|png|gif|webp))\)/i);
+  // 2. Find first image in article content (standard markdown format - with or without path)
+  // Matches: ![alt](image.jpg) or ![alt](path/to/image.jpg)
+  const markdownImageMatch = article.rawContent?.match(/!\[.*?\]\((?:.*\/)?([^\/\)]+\.(jpg|jpeg|png|gif|webp))\)/i);
   if (markdownImageMatch) {
     return `/assets/images/${markdownImageMatch[1]}`;
   }
