@@ -18,7 +18,7 @@ featured: true
 homepage_priority: 4
 reading_time: 8 min
 ---
-![[@ONGOING_NEW/ai-diven_cos/content/_assets/images/114.jpg]]
+![[2025-01-11-personalized-skincare-market_20260124_1.jpg]]
 # Personalized Skincare: The $10B Market
 
 The era of one-size-fits-all skincare is ending. Personalization isn't just a trend—it's restructuring the entire industry.

@@ -18,7 +18,7 @@ featured: false
 homepage_priority: 5
 reading_time: 7 min
 ---
-![[@ONGOING_NEW/ai-diven_cos/content/_assets/images/117.jpg]]
+![[content/_assets/images/117.jpg]]
 # Sustainable Beauty 2025: What's Real vs. Marketing
 
 The beauty industry produces 120 billion units of packaging annually. But is the "sustainable beauty" movement actually making a difference, or is it elaborate greenwashing?

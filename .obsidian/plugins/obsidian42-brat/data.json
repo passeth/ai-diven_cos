@@ -1,0 +1,23 @@
+{
+  "pluginList": [
+    "reallygood83/obsidian-code"
+  ],
+  "pluginSubListFrozenVersion": [
+    {
+      "repo": "reallygood83/obsidian-code",
+      "version": ""
+    }
+  ],
+  "themesList": [],
+  "updateAtStartup": true,
+  "updateThemesAtStartup": true,
+  "enableAfterInstall": true,
+  "loggingEnabled": false,
+  "loggingPath": "BRAT-log",
+  "loggingVerboseEnabled": false,
+  "debuggingMode": false,
+  "notificationsEnabled": true,
+  "personalAccessToken": "",
+  "selectLatestPluginVersionByDefault": false,
+  "allowIncompatiblePlugins": false
+}
