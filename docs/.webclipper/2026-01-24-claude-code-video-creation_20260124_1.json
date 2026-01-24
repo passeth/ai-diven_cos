@@ -1,0 +1,84 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "YouTube Video Note (Project Format)",
+	"behavior": "create",
+	"noteContentFormat": "<div class=\"video-embed\">\n<iframe src=\"https://www.youtube.com/embed/{{url|replace:\"/.*[?&]v=([a-zA-Z0-9_-]{11}).*/\":\"$1\"|replace:\"/.*youtu\\.be\\/([a-zA-Z0-9_-]{11}).*/\":\"$1\"}}\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>\n</div>\n\n**Channel:** {{author}} | **Published:** {{published}}\n\n---\n\n## 1. Executive Summary\n\n{{\"Summarize this video in Korean: 1) One core message sentence, 2) Three key points as numbered list, 3) Video structure overview in 2 sentences, 4) Target audience.\"|callout:(\"summary\", \"Executive Summary\", false)}}\n\n---\n\n## 2. Chapter Analysis\n\n{{\"Write detailed narrative notes for each chapter in Korean like a lecture transcript summary. For EACH chapter explain thoroughly what the speaker said, their reasoning, examples given, and why it matters. Use paragraphs not bullet points. Write as if someone could fully understand the video without watching it. Cover ALL chapters thoroughly. NEVER output word count or character count like (약 200자).\"|callout:(\"note\", \"챕터별 분석\", false)}}\n\n---\n\n## 3. Key Concepts\n\n{{\"Extract ALL key concepts and terms from this video in Korean. Create a table with columns: Term, Definition, Context in video. Then explain any frameworks or models mentioned. Finally describe how concepts relate to each other.\"|callout:(\"info\", \"핵심 개념\", false)}}\n\n---\n\n## 4. Detailed Notes\n\n{{\"Create exhaustive learning notes in Korean covering: 1) Background context and why this matters, 2) All main arguments with supporting evidence, 3) Step-by-step methods or processes explained, 4) Data and statistics mentioned, 5) Limitations acknowledged. Be comprehensive enough to understand without watching.\"|callout:(\"note\", \"상세 학습 노트\", false)}}\n\n---\n\n## 5. Action Items\n\n{{\"Extract actionable insights in Korean: 1) Immediate actions as checkbox list, 2) Long-term application areas, 3) Books or resources mentioned, 4) Questions for further exploration.\"|callout:(\"tip\", \"실행 아이템\", false)}}\n\n---\n\n## 6. Feynman Explanation\n\n{{\"Using Feynman Technique, explain ALL main concepts from this video in Korean. Write comprehensively. Use simple analogies and everyday examples. Connect all key concepts naturally. Cover the ENTIRE video content. This will be used for InfraNodus knowledge graph analysis. NEVER output word count or character count like (약 400자).\"|callout:(\"tip\", \"쉬운 설명\", false)}}\n\n---\n\n## 7. My Notes\n\n### Related Knowledge\n- \n\n### Ideas\n- \n\n### Personal Memo\n- \n\n---\n\n*Clipped: {{date}}*",
+	"properties": [
+		{
+			"name": "title",
+			"value": "{{title|replace:\" - YouTube\":\"\"|trim}}",
+			"type": "text"
+		},
+		{
+			"name": "slug",
+			"value": "{{title|replace:\" - YouTube\":\"\"|lower|replace:\"/[^a-z0-9]+/g\":\"-\"|replace:\"/^-|-$/g\":\"\"|truncate:50}}",
+			"type": "text"
+		},
+		{
+			"name": "journalist",
+			"value": "dr-emily-chen",
+			"type": "text"
+		},
+		{
+			"name": "category",
+			"value": "videos",
+			"type": "text"
+		},
+		{
+			"name": "tags",
+			"value": "video-note, {{\"Extract 2-3 relevant tags from this video. Return ONLY comma-separated lowercase tags like: ai, tutorial, coding\"}}",
+			"type": "multitext"
+		},
+		{
+			"name": "date",
+			"value": "{{date|date:\"YYYY-MM-DD\"}}",
+			"type": "date"
+		},
+		{
+			"name": "excerpt",
+			"value": "{{\"Write a 1-sentence Korean summary of this video (max 100 chars). No quotes.\"}}",
+			"type": "text"
+		},
+		{
+			"name": "status",
+			"value": "published",
+			"type": "text"
+		},
+		{
+			"name": "featured",
+			"value": "false",
+			"type": "checkbox"
+		},
+		{
+			"name": "reading_time",
+			"value": "{{\"Estimate reading time based on video length. Return format like: 10 min\"}}",
+			"type": "text"
+		},
+		{
+			"name": "video_url",
+			"value": "https://www.youtube.com/embed/{{url|replace:\"/.*[?&]v=([a-zA-Z0-9_-]{11}).*/\":\"$1\"|replace:\"/.*youtu\\.be\\/([a-zA-Z0-9_-]{11}).*/\":\"$1\"}}",
+			"type": "text"
+		},
+		{
+			"name": "video_channel",
+			"value": "{{author}}",
+			"type": "text"
+		},
+		{
+			"name": "source_url",
+			"value": "{{url}}",
+			"type": "text"
+		},
+		{
+			"name": "featured_image",
+			"value": "https://img.youtube.com/vi/{{url|replace:\"/.*[?&]v=([a-zA-Z0-9_-]{11}).*/\":\"$1\"|replace:\"/.*youtu\\.be\\/([a-zA-Z0-9_-]{11}).*/\":\"$1\"}}/maxresdefault.jpg",
+			"type": "text"
+		}
+	],
+	"triggers": [
+		"https://www.youtube.com/",
+		"https://youtu.be/"
+	],
+	"noteNameFormat": "{{date|date:\"YYYY-MM-DD\"}}-{{title|replace:\" - YouTube\":\"\"|lower|replace:\"/[^a-z0-9]+/g\":\"-\"|replace:\"/^-|-$/g\":\"\"|truncate:50}}",
+	"path": "content/videos"
+}
