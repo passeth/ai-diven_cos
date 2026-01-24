@@ -286,6 +286,21 @@ This project uses **Obsidian Git** plugin for automatic backup and GitHub sync.
 | **Auto pull on startup** | ✅ ON | Pull latest changes when Obsidian opens |
 | **Push on backup** | ✅ ON | Auto push on backup |
 | **Pull before push** | ✅ ON | Pull before push to prevent conflicts |
+| **Auto backup after file change** | ✅ ON | Push immediately when file is saved |
+
+### Auto-Push Behavior
+
+By default, this template is configured for **instant push on save**:
+
+- Create/edit a note → Save → Auto push to GitHub → Vercel deploys
+
+If you prefer **interval-based backup** (less commits):
+
+1. Open `.obsidian/plugins/obsidian-git/data.json`
+2. Set `"autoBackupAfterFileChange": false`
+3. Restart Obsidian
+
+With this setting, backups happen every 10 minutes instead of on every save.
 
 ### Commands (Cmd+P / Ctrl+P)
 
