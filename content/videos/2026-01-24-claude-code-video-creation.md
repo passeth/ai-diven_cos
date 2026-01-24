@@ -1,15 +1,20 @@
 ---
-title: "Claude Code can now make videos, here’s how"
-source_url: "https://www.youtube.com/watch?v=fOY0_WCR3eY"
-channel:
-  - "David Ondrej"
-created: 2026-01-24
-type: "deep-learning-note"
-category:
-  - "AI/ML"
+title: "Claude Code can now make videos, here's how"
+slug: claude-code-video-creation
+journalist: dr-emily-chen
+category: videos
 tags:
-  - "youtube"
-  - "deep-analysi"
+  - ai-video
+  - claude-code
+  - remotion
+date: 2026-01-24
+excerpt: "Remotion과 Claude Code를 결합하여 AI가 영상 콘텐츠를 프로그래밍적으로 생성하는 방법"
+status: published
+featured: false
+reading_time: 10 min
+video_url: https://www.youtube.com/embed/fOY0_WCR3eY
+video_channel: David Ondrej
+source_url: "https://www.youtube.com/watch?v=fOY0_WCR3eY"
 topics_kr: "Remotion과 Claude Code 통합, AI 기반 비디오 생성, 코드로 영상 프로그래밍, 프롬프트 엔지니어링, 콘텐츠 제작 자동화"
 ---
 ## Video

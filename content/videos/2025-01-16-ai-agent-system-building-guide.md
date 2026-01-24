@@ -11,7 +11,7 @@ tags:
 date: 2025-01-16
 excerpt: AI Founders, Investors, and Customer Feedback reveal the top 8 principles for building reliable AI agent systems.
 status: published
-featured: false
+featured: true
 reading_time: 12 min
 video_url: https://www.youtube.com/embed/XFo3mHXW34Y
 video_channel: Sean's Stories
