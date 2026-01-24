@@ -229,7 +229,7 @@ Git은 파일 크기 제한이 있습니다. 이미지를 최적화하세요:
 ## 📁 프로젝트 구조
 
 ```
-ai-diven_cos/                   # 루트 = Obsidian Vault
+MY-BLOG_OBSI/                   # 루트 = Obsidian Vault
 ├── content/                    # 마크다운 아티클
 │   ├── development/            # AI 화장품 R&D
 │   ├── products/               # 제품 리뷰
@@ -449,7 +449,7 @@ git push
 
 - **라이브 데모**: https://ai-diven-cos.vercel.app
 - **샘플 아티클**: https://ai-diven-cos.vercel.app/articles/niacinamide-complete-guide.html
-- **저장소**: https://github.com/passeth/ai-diven_cos
+- **저장소**: https://github.com/passeth/MY-BLOG_OBSI
 - **빠른 설정 가이드**: [SETUP.md](SETUP.md)
 
 ## 📄 라이선스

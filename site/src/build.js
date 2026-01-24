@@ -14,7 +14,7 @@ const CONFIG = {
   outputDir: path.join(__dirname, '../build'),
   templatesDir: path.join(__dirname, 'pages'),
   publicDir: path.join(__dirname, '../public'),
-  siteUrl: process.env.SITE_URL || 'https://passeth.github.io/ai-diven_cos',
+  siteUrl: process.env.SITE_URL || 'https://passeth.github.io/MY-BLOG_OBSI',
   siteName: 'AI Cosmetics Innovation Journal',
   categories: [] // Will be populated by scanCategories()
 };
@@ -112,7 +112,7 @@ function getCategoryMeta(categorySlug) {
 
 /**
  * Convert Obsidian-style image links to HTML
- * ![[@ONGOING_NEW/ai-diven_cos/content/_assets/images/file.webp]] -> <img src="/assets/images/file.webp">
+ * ![[@ONGOING_NEW/MY-BLOG_OBSI/content/_assets/images/file.webp]] -> <img src="/assets/images/file.webp">
  */
 function convertObsidianImages(markdown) {
   // Pattern: ![[path/to/image.ext]] - handles full Obsidian vault paths

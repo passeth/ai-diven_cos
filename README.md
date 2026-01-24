@@ -231,7 +231,7 @@ For manual setup, see **[SETUP.md](SETUP.md)**.
 ## 📁 Project Structure
 
 ```
-ai-diven_cos/                   # Root = Obsidian Vault
+MY-BLOG_OBSI/                   # Root = Obsidian Vault
 ├── content/                    # Markdown articles
 │   ├── development/            # AI cosmetics R&D
 │   ├── products/               # Product reviews
@@ -451,7 +451,7 @@ Plugin settings (`data.json`) are included in Git for easy sharing:
 
 - **Live Demo**: https://ai-diven-cos.vercel.app
 - **Sample Article**: https://ai-diven-cos.vercel.app/articles/niacinamide-complete-guide.html
-- **Repository**: https://github.com/passeth/ai-diven_cos
+- **Repository**: https://github.com/passeth/MY-BLOG_OBSI
 - **Quick Setup Guide**: [SETUP.md](SETUP.md)
 
 ## 📄 License

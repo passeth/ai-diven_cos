@@ -4,7 +4,7 @@
 
 A complete AI-powered journal platform for cosmetics innovation, connecting Obsidian vault to Git to Web publishing pipeline.
 
-**Repository:** https://github.com/passeth/ai-diven_cos
+**Repository:** https://github.com/passeth/MY-BLOG_OBSI
 
 ## Tech Stack
 
@@ -29,7 +29,7 @@ A complete AI-powered journal platform for cosmetics innovation, connecting Obsi
 ## Directory Structure
 
 ```
-ai-diven_cos/
+MY-BLOG_OBSI/
 ├── content/                    # Markdown content
 │   ├── development/            # AI cosmetics R&D
 │   ├── products/               # Product reviews
@@ -249,4 +249,4 @@ npm run deploy
 
 **Project:** AI Cosmetics Innovation Journal
 **Maintainer:** passeth
-**Repository:** https://github.com/passeth/ai-diven_cos
+**Repository:** https://github.com/passeth/MY-BLOG_OBSI
