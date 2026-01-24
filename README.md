@@ -52,6 +52,7 @@ npm run dev
 
 ### How It Works
 
+#### Production (Vercel)
 ```
 ┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
 │   Obsidian   │     │    GitHub    │     │    Vercel    │     │   Website    │
@@ -59,6 +60,20 @@ npm run dev
 └──────────────┘     └──────────────┘     └──────────────┘     └──────────────┘
 ```
 
+#### Local Development (Auto-Reload)
+```
+┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│   Obsidian   │     │  Dev Server  │     │  localhost   │
+│  Save Note   │ ──▶ │  Auto Build  │ ──▶ │   :3000      │
+└──────────────┘     └──────────────┘     └──────────────┘
+```
+
+**Local workflow** (no Git push needed):
+1. Run `npm run dev` to start development server
+2. Edit note in Obsidian → Save
+3. Refresh browser → Changes reflected instantly
+
+**Production workflow**:
 1. **Write** a note in `content/` folder using Obsidian
 2. **Save** the file (Ctrl+S / Cmd+S)
 3. **Push** to GitHub (auto or manual via Obsidian Git)
