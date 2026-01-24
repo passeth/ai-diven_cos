@@ -4,6 +4,48 @@ A complete **zero-cost CMS** connecting Obsidian → GitHub → Vercel. Write in
 
 > **[Live Demo](https://ai-diven-cos.vercel.app)** | **[Sample Article](https://ai-diven-cos.vercel.app/articles/niacinamide-complete-guide.html)**
 
+---
+
+## 🚀 Getting Started (Use This Template)
+
+### Step 1: Create Your Repository
+
+Click the green **"Use this template"** button above, then select **"Create a new repository"**.
+
+- Enter your repository name (e.g., `my-blog`)
+- Choose public or private
+- Click **"Create repository"**
+
+### Step 2: Clone Your New Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+cd YOUR_REPO_NAME
+```
+
+### Step 3: Install & Run
+
+```bash
+# Install dependencies
+npm install
+
+# Run interactive setup (optional)
+python setup.py
+
+# Start development server
+npm run dev
+```
+
+### Step 4: Deploy to Vercel
+
+1. Go to [vercel.com/new](https://vercel.com/new)
+2. Import your GitHub repository
+3. Deploy (auto-configured)
+
+**Done!** Your site is now live with automatic deployments on every push.
+
+---
+
 ## What You Can Build
 
 Use this template to create blogs, journals, documentation sites, or any content-driven website:
@@ -68,47 +110,21 @@ This project is a static site generator for a cosmetics innovation journal, feat
 - **Obsidian integration** with Claude Code skills
 - **SEO-optimized** static HTML output
 
-## 🚀 Quick Start
+## 🛠️ Prerequisites
 
-### Prerequisites
 - Python 3.8+
 - Node.js 18+
 - Git
 - [Obsidian](https://obsidian.md/)
 
-### Installation
-
-```bash
-# 1. Clone the template
-git clone https://github.com/passeth/ai-diven_cos.git my-blog
-cd my-blog
-
-# 2. Run interactive setup
-python setup.py
-
-# 3. Create your GitHub repo, then push
-git push -u origin main
-
-# 4. Import to Vercel: https://vercel.com/new
-```
+## ⚙️ Configuration
 
 The `setup.py` script will configure:
 - Site name & description
-- GitHub repository connection
 - Content categories
 - Obsidian plugin settings
 
-### Manual Setup (without setup.py)
-
-```bash
-npm install
-npm run build
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to view the site.
-
-See **[SETUP.md](SETUP.md)** for detailed instructions.
+For manual setup, see **[SETUP.md](SETUP.md)**.
 
 ## 📁 Project Structure
 
@@ -234,7 +250,7 @@ With **Obsidian Git** plugin installed:
 1. `Cmd+P` → `Obsidian Git: Create backup`
 2. Done! Vercel deploys automatically
 
-Or wait for auto backup (10분마다 자동 실행)
+Or wait for auto backup (runs every 10 minutes)
 
 ### Manual
 
@@ -260,52 +276,52 @@ Or wait for auto backup (10분마다 자동 실행)
 
 ## 🔄 Git Push Management
 
-이 프로젝트는 **Obsidian Git** 플러그인을 사용하여 자동 백업 및 GitHub 동기화를 관리합니다.
+This project uses **Obsidian Git** plugin for automatic backup and GitHub sync.
 
-### 현재 설정
+### Default Settings
 
-| 설정 | 값 | 설명 |
-|------|-----|------|
-| **Auto backup interval** | 10분 | 10분마다 자동 커밋 + Push |
-| **Auto pull on startup** | ✅ ON | Obsidian 시작 시 최신 내용 Pull |
-| **Push on backup** | ✅ ON | 백업 시 자동 Push |
-| **Pull before push** | ✅ ON | 충돌 방지를 위해 Push 전 Pull |
+| Setting | Value | Description |
+|---------|-------|-------------|
+| **Auto backup interval** | 10 min | Auto commit + push every 10 minutes |
+| **Auto pull on startup** | ✅ ON | Pull latest changes when Obsidian opens |
+| **Push on backup** | ✅ ON | Auto push on backup |
+| **Pull before push** | ✅ ON | Pull before push to prevent conflicts |
 
-### 주요 명령어 (Cmd+P)
+### Commands (Cmd+P / Ctrl+P)
 
-| 명령어 | 설명 |
-|--------|------|
-| `Obsidian Git: Create backup` | 즉시 커밋 + Push (가장 많이 사용) |
-| `Obsidian Git: Commit all changes` | 변경사항만 커밋 |
-| `Obsidian Git: Push` | 원격에 Push |
-| `Obsidian Git: Pull` | 원격에서 Pull |
+| Command | Description |
+|---------|-------------|
+| `Obsidian Git: Create backup` | Instant commit + push (most used) |
+| `Obsidian Git: Commit all changes` | Commit changes only |
+| `Obsidian Git: Push` | Push to remote |
+| `Obsidian Git: Pull` | Pull from remote |
 
-### 커밋 메시지 형식
+### Commit Message Format
 
 ```
 vault backup: 2026-01-16 22:07:32
 ```
 
-### 상태 확인
+### Status Bar
 
-- Obsidian 하단 상태바에서 Git 상태 확인 가능
-- ✓ 표시: 동기화 완료
-- 숫자 표시: 변경된 파일 수
+- Check Git status in Obsidian's bottom status bar
+- ✓ = Synced
+- Number = Changed files count
 
-### 수동 Push (터미널)
+### Manual Push (Terminal)
 
 ```bash
-cd "/path/to/ai-diven_cos"
+cd "your-project-folder"
 git add .
 git commit -m "your message"
 git push
 ```
 
-### 플러그인 설정 동기화
+### Plugin Settings Sync
 
-이 저장소는 **공유용**이므로 플러그인 설정(data.json)도 Git에 포함됩니다.
-- Clone 시 플러그인 설정이 자동으로 적용됨
-- 설정 변경 시 함께 Push됨
+Plugin settings (`data.json`) are included in Git for easy sharing:
+- Settings auto-apply when cloned
+- Changes sync with your pushes
 
 ## 📝 Documentation
 
