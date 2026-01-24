@@ -1,5 +1,7 @@
 # Obsidian Zero-Cost CMS Template
 
+**[한국어 README](README.ko.md)**
+
 A complete **zero-cost CMS** connecting Obsidian → GitHub → Vercel. Write in Markdown, deploy automatically.
 
 > **[Live Demo](https://ai-diven-cos.vercel.app)** | **[Sample Article](https://ai-diven-cos.vercel.app/articles/niacinamide-complete-guide.html)**
